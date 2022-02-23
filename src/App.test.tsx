@@ -3,8 +3,6 @@ import { screen, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 
-/* import { render } from './utils/router-test-wrapper'; */
-
 describe('App', () => {
   test('renders learn react link', () => {
     render(
@@ -13,7 +11,7 @@ describe('App', () => {
       </MemoryRouter>
     );
 
-    const linkElement = screen.getByText(/dashboard/i);
-    expect(linkElement).toBeInTheDocument();
+    const titles = screen.getAllByText(/Rick & Morty ft. GraphQL/i);
+    titles.forEach((title) => expect(title).toBeInTheDocument());
   });
 });
