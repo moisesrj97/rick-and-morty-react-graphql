@@ -64,12 +64,12 @@ export function Gallery({
     <div className="flex flex-wrap gap-4 justify-center my-8 mx-6">
       {error && <p className="text-4xl text-white">Error :(</p>}
       {loading && <p className="text-4xl text-white">Loading...</p>}
-      {data?.[type.toLowerCase()].results.map((character) => (
+      {data?.[type.toLowerCase()].results.map((item) => (
         <Card
-          key={character.id}
-          image={character.image}
-          title={character.name}
-          episode={character.episode}
+          key={item.id}
+          image={item.image}
+          title={item.name}
+          episode={item.episode}
         />
       ))}
     </div>
