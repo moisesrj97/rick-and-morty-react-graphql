@@ -12,10 +12,22 @@ import { About } from './pages/About';
 import { NavBar } from './core/NavBar';
 import { Footer } from './core/Footer';
 
+export interface MenuItemI {
+  tag: string;
+  url: string;
+}
+
 function App(): JSX.Element {
+  const navLinks: MenuItemI[] = [
+    { tag: 'Characters', url: '/characters/' },
+    { tag: 'Locations', url: '/locations/' },
+    { tag: 'Episodes', url: '/episodes/' },
+    { tag: 'About', url: '/about/' },
+  ];
+
   return (
     <div className="App min-h-screen flex flex-col">
-      <NavBar />
+      <NavBar navLinks={navLinks} />
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Dashboard />} />

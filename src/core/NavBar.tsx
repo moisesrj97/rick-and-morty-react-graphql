@@ -1,9 +1,14 @@
 import React from 'react';
 import { NavLink as Link } from 'react-router-dom';
+import { MenuItemI } from '../App';
 
 import './NavBar.scss';
 
-export function NavBar(): JSX.Element {
+interface PropsI {
+  navLinks: MenuItemI[];
+}
+
+export function NavBar({ navLinks }: PropsI): JSX.Element {
   const underlineClass = 'underline underline-offset-4 decoration-green-500';
 
   const isActiveLink = (iA: boolean): string => (iA ? underlineClass : '');
@@ -21,38 +26,13 @@ export function NavBar(): JSX.Element {
         </hgroup>
       </Link>
       <ul className="flex gap-4 items-center text-xl">
-        <li>
-          <Link
-            to="/characters/"
-            className={({ isActive }) => isActiveLink(isActive)}
-          >
-            Characters
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/locations/"
-            className={({ isActive }) => isActiveLink(isActive)}
-          >
-            Locations
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/episodes/"
-            className={({ isActive }) => isActiveLink(isActive)}
-          >
-            Episodes
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/about/"
-            className={({ isActive }) => isActiveLink(isActive)}
-          >
-            About
-          </Link>
-        </li>
+        {navLinks.map(({ tag, url }) => (
+          <li>
+            <Link to={url} className={({ isActive }) => isActiveLink(isActive)}>
+              {tag}
+            </Link>
+          </li>
+        ))}
       </ul>
     </header>
   );
