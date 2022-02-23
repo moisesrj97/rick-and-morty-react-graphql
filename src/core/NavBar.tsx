@@ -9,9 +9,10 @@ interface PropsI {
 }
 
 export function NavBar({ navLinks }: PropsI): JSX.Element {
-  const underlineClass = 'underline underline-offset-4 decoration-green-500';
+  const activeC = 'underline underline-offset-4 decoration-green-400';
+  const inactiveC = 'hover:underline  underline-offset-4 decoration-green-400';
 
-  const isActiveLink = (iA: boolean): string => (iA ? underlineClass : '');
+  const isActiveLink = (iA: boolean): string => (iA ? activeC : inactiveC);
 
   return (
     <header className="text-white w-full flex justify-between px-5 py-2">
