@@ -28,7 +28,7 @@ function App(): JSX.Element {
   return (
     <div className="App min-h-screen flex flex-col">
       <NavBar navLinks={navLinks} />
-      <main className="flex-1">
+      <main className="flex-1 my-4">
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/characters/*" element={<Characters />} />
