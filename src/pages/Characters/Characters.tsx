@@ -46,7 +46,11 @@ export function Characters(): JSX.Element {
           maxPage={data.characters.info.pages}
         />
       )}
-      <Gallery pageIndex={pageIndex} setContentLoading={setContentLoading} />
+      <Gallery
+        pageIndex={pageIndex}
+        setContentLoading={setContentLoading}
+        type="Characters"
+      />
       {data && !contentLoading && (
         <NavButtons
           nextPage={nextPage}
