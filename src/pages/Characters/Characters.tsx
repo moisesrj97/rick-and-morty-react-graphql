@@ -11,7 +11,7 @@ interface CharactersPagesAmountQueryI {
   };
 }
 
-const CHARACTERS_PAGES_AMOUNT_QUERY = gql`
+export const CHARACTERS_PAGES_AMOUNT_QUERY = gql`
   query charactersPagesAmountQuery {
     characters {
       info {
