@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { Dashboard } from './pages/Dashboard';
 import { Characters } from './pages/Characters';
@@ -15,13 +15,14 @@ function App(): JSX.Element {
     <div className="App">
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/characters" element={<Characters />} />
+        <Route path="/characters/*" element={<Characters />} />
         <Route path="/characters/:id" element={<CharacterDetail />} />
-        <Route path="/locations" element={<Locations />} />
+        <Route path="/locations/*" element={<Locations />} />
         <Route path="/locations/:id" element={<LocationDetail />} />
-        <Route path="/episodes" element={<Episodes />} />
+        <Route path="/episodes/*" element={<Episodes />} />
         <Route path="/episodes/:id" element={<EpisodeDetail />} />
         <Route path="/about" element={<About />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>
   );
