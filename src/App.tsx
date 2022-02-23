@@ -1,16 +1,16 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { Dashboard } from './pages/Dashboard';
-import { Characters } from './pages/Characters';
-import { CharacterDetail } from './pages/CharacterDetail';
-import { Locations } from './pages/Locations';
-import { LocationDetail } from './pages/LocationDetail';
-import { Episodes } from './pages/Episodes';
-import { EpisodeDetail } from './pages/EpisodeDetail';
-import { About } from './pages/About';
-import { NavBar } from './core/NavBar';
-import { Footer } from './core/Footer';
+import { Dashboard } from './pages/Dashboard/Dashboard';
+import { Characters } from './pages/Characters/Characters';
+import { CharacterDetail } from './pages/CharacterDetails/CharacterDetail';
+import { Locations } from './pages/Locations/Locations';
+import { LocationDetail } from './pages/LocationDetails/LocationDetail';
+import { Episodes } from './pages/Episodes/Episodes';
+import { EpisodeDetail } from './pages/EpisodeDetails/EpisodeDetail';
+import { About } from './pages/About/About';
+import { NavBar } from './core/NavBar/NavBar';
+import { Footer } from './core/Footer/Footer';
 
 export interface MenuItemI {
   tag: string;
