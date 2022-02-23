@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { NavBar } from './NavBar';
 
 describe('Given NavBar Component', () => {
@@ -18,8 +18,10 @@ describe('Given NavBar Component', () => {
       ];
 
       render(
-        <MemoryRouter>
-          <NavBar navLinks={mockRoutes} />
+        <MemoryRouter initialEntries={['/test']}>
+          <Routes location="/test">
+            <Route path="/test" element={<NavBar navLinks={mockRoutes} />} />
+          </Routes>
         </MemoryRouter>
       );
 
