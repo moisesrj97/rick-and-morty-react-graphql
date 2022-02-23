@@ -23,7 +23,7 @@ export function NavBar({ navLinks }: PropsI): JSX.Element {
             alt="Page logo"
             className="spinning w-12"
           />
-          <h1 className="text-3xl font-light">Rick & Morty ft. GraphQL</h1>
+          <h1 className="hidden">Rick & Morty ft. GraphQL</h1>
         </hgroup>
       </Link>
       <ul className="flex gap-4 items-center text-xl">
