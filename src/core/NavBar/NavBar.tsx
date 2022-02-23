@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink as Link } from 'react-router-dom';
-import { MenuItemI } from '../App';
+import { MenuItemI } from '../../App';
 
 import './NavBar.scss';
 

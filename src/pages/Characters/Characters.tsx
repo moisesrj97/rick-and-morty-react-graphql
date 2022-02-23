@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { gql, useQuery } from '@apollo/client';
-import { Gallery } from '../containers/Gallery';
-import { NavButtons } from '../core/NavButtons';
+import { Gallery } from '../../containers/Gallery/Gallery';
+import { NavButtons } from '../../core/NavButtons/NavButtons';
 
 interface CharactersPagesAmountQueryI {
   characters: {

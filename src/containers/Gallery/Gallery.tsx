@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import React from 'react';
-import { Card } from './Card';
+import { Card } from '../Card/Card';
 
 interface CharacterThumbnailDataI {
   id: string;
