@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card } from '../Card/Card';
 
 interface CharacterThumbnailDataI {
@@ -19,7 +19,7 @@ interface CharactersQueryVariablesI {
 }
 
 export const CHARACTERS_QUERY = gql`
-  query ExampleQuery($page: Int) {
+  query CharacterQuery($page: Int) {
     characters(page: $page) {
       results {
         name
@@ -30,13 +30,26 @@ export const CHARACTERS_QUERY = gql`
   }
 `;
 
-export function Gallery({ pageIndex }: { pageIndex: number }): JSX.Element {
+interface GalleryPropsI {
+  pageIndex: number;
+  setContentLoading: (loading: boolean) => void;
+}
+
+export function Gallery({
+  pageIndex,
+  setContentLoading,
+}: GalleryPropsI): JSX.Element {
   const { loading, error, data } = useQuery<
     CharactersQueryResultI,
     CharactersQueryVariablesI
   >(CHARACTERS_QUERY, {
     variables: { page: pageIndex },
   });
+
+  useEffect(
+    () => (loading ? setContentLoading(true) : setContentLoading(false)),
+    [loading, setContentLoading]
+  );
 
   return (
     <div className="flex flex-wrap gap-4 justify-center my-8 mx-6">

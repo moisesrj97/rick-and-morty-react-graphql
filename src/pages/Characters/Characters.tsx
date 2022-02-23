@@ -23,6 +23,7 @@ const CHARACTERS_PAGES_AMOUNT_QUERY = gql`
 
 export function Characters(): JSX.Element {
   const [pageIndex, setPageIndex] = useState(1);
+  const [contentLoading, setContentLoading] = useState(true);
   const { data } = useQuery<CharactersPagesAmountQueryI>(
     CHARACTERS_PAGES_AMOUNT_QUERY
   );
@@ -37,7 +38,7 @@ export function Characters(): JSX.Element {
 
   return (
     <>
-      {data && (
+      {data && !contentLoading && (
         <NavButtons
           nextPage={nextPage}
           prevPage={prevPage}
@@ -45,8 +46,8 @@ export function Characters(): JSX.Element {
           maxPage={data.characters.info.pages}
         />
       )}
-      <Gallery pageIndex={pageIndex} />
-      {data && (
+      <Gallery pageIndex={pageIndex} setContentLoading={setContentLoading} />
+      {data && !contentLoading && (
         <NavButtons
           nextPage={nextPage}
           prevPage={prevPage}
