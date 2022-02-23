@@ -1,50 +1,59 @@
-import { gql, useQuery } from '@apollo/client';
+import { DocumentNode, gql, useQuery } from '@apollo/client';
 import React, { useEffect } from 'react';
 import { Card } from '../Card/Card';
+import {
+  CHARACTERS_QUERY,
+  LOCATIONS_QUERY,
+  EPISODES_QUERY,
+} from './GalleryQueries';
 
-interface CharacterThumbnailDataI {
-  id: string;
-  name: string;
-  image: string;
-}
-
-interface CharactersQueryResultI {
-  characters: {
-    results: CharacterThumbnailDataI[];
-  };
-}
-
-interface CharactersQueryVariablesI {
+interface QueryVariableI {
   page: number;
 }
-
-export const CHARACTERS_QUERY = gql`
-  query CharacterQuery($page: Int) {
-    characters(page: $page) {
-      results {
-        name
-        id
-        image
-      }
-    }
-  }
-`;
 
 interface GalleryPropsI {
   pageIndex: number;
   setContentLoading: (loading: boolean) => void;
+  type: 'Characters' | 'Episodes' | 'Locations';
 }
 
 export function Gallery({
   pageIndex,
   setContentLoading,
+  type,
 }: GalleryPropsI): JSX.Element {
-  const { loading, error, data } = useQuery<
-    CharactersQueryResultI,
-    CharactersQueryVariablesI
-  >(CHARACTERS_QUERY, {
-    variables: { page: pageIndex },
-  });
+  let QUERY: DocumentNode;
+
+  interface QueryResultI {
+    [key: string]: {
+      results: [
+        {
+          id: string;
+          name: string;
+          image?: string;
+          episode?: string;
+        }
+      ];
+    };
+  }
+
+  switch (type) {
+    case 'Characters':
+      QUERY = CHARACTERS_QUERY;
+      break;
+    case 'Episodes':
+      QUERY = EPISODES_QUERY;
+      break;
+    default:
+      QUERY = LOCATIONS_QUERY;
+  }
+
+  const { loading, error, data } = useQuery<QueryResultI, QueryVariableI>(
+    QUERY,
+    {
+      variables: { page: pageIndex },
+    }
+  );
 
   useEffect(
     () => (loading ? setContentLoading(true) : setContentLoading(false)),
@@ -55,11 +64,12 @@ export function Gallery({
     <div className="flex flex-wrap gap-4 justify-center my-8 mx-6">
       {error && <p className="text-4xl text-white">Error :(</p>}
       {loading && <p className="text-4xl text-white">Loading...</p>}
-      {data?.characters.results.map((character) => (
+      {data?.[type.toLowerCase()].results.map((character) => (
         <Card
           key={character.id}
           image={character.image}
           title={character.name}
+          episode={character.episode}
         />
       ))}
     </div>
