@@ -28,7 +28,7 @@ export function NavBar({ navLinks }: PropsI): JSX.Element {
       </Link>
       <ul className="flex gap-4 items-center text-xl">
         {navLinks.map(({ tag, url }) => (
-          <li>
+          <li key={url}>
             <Link to={url} className={({ isActive }) => isActiveLink(isActive)}>
               {tag}
             </Link>
