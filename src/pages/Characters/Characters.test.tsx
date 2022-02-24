@@ -11,6 +11,7 @@ const mocks = [
       query: CHARACTERS_QUERY,
       variables: {
         page: 1,
+        filter: { name: '' },
       },
     },
     result: {
@@ -37,6 +38,7 @@ const mocks = [
       query: CHARACTERS_QUERY,
       variables: {
         page: 2,
+        filter: { name: '' },
       },
     },
     result: {
@@ -61,6 +63,7 @@ const mocks = [
   {
     request: {
       query: CHARACTERS_PAGES_AMOUNT_QUERY,
+      variables: { filter: { name: '' } },
     },
     result: {
       data: {
