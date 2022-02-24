@@ -1,7 +1,7 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { NavButtons } from './NavButtons';
-import { MemoryRouter } from 'react-router-dom';
 
 describe('Given NavButtons', () => {
   describe('When given middle indexes', () => {
