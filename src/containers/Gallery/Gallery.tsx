@@ -1,5 +1,6 @@
-import { DocumentNode, gql, useQuery } from '@apollo/client';
+import { DocumentNode, useQuery } from '@apollo/client';
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Card } from '../Card/Card';
 import {
   CHARACTERS_QUERY,
@@ -65,12 +66,9 @@ export function Gallery({
       {error && <p className="text-4xl text-white">Error :(</p>}
       {loading && <p className="text-4xl text-white">Loading...</p>}
       {data?.[type.toLowerCase()].results.map((item) => (
-        <Card
-          key={item.id}
-          image={item.image}
-          title={item.name}
-          episode={item.episode}
-        />
+        <Link to={`/${type.toLowerCase()}/${item.id}`} key={item.id}>
+          <Card image={item.image} title={item.name} episode={item.episode} />
+        </Link>
       ))}
     </div>
   );
