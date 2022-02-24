@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { MockedProvider } from '@apollo/client/testing';
+import { MemoryRouter } from 'react-router-dom';
 import { Gallery } from './Gallery';
 import {
   CHARACTERS_QUERY,
@@ -136,11 +137,13 @@ describe('Given Gallery component', () => {
 
       render(
         <MockedProvider mocks={[charactersMock]}>
-          <Gallery
-            pageIndex={1}
-            setContentLoading={mockSetContentLoading}
-            type="Characters"
-          />
+          <MemoryRouter>
+            <Gallery
+              pageIndex={1}
+              setContentLoading={mockSetContentLoading}
+              type="Characters"
+            />
+          </MemoryRouter>
         </MockedProvider>
       );
 
@@ -154,11 +157,13 @@ describe('Given Gallery component', () => {
       const mockSetContentLoading = jest.fn();
       render(
         <MockedProvider mocks={[locationMock]}>
-          <Gallery
-            pageIndex={1}
-            setContentLoading={mockSetContentLoading}
-            type="Locations"
-          />
+          <MemoryRouter>
+            <Gallery
+              pageIndex={1}
+              setContentLoading={mockSetContentLoading}
+              type="Locations"
+            />
+          </MemoryRouter>
         </MockedProvider>
       );
 
@@ -172,11 +177,13 @@ describe('Given Gallery component', () => {
       const mockSetContentLoading = jest.fn();
       render(
         <MockedProvider mocks={[episodesMock]}>
-          <Gallery
-            pageIndex={1}
-            setContentLoading={mockSetContentLoading}
-            type="Episodes"
-          />
+          <MemoryRouter>
+            <Gallery
+              pageIndex={1}
+              setContentLoading={mockSetContentLoading}
+              type="Episodes"
+            />
+          </MemoryRouter>
         </MockedProvider>
       );
 

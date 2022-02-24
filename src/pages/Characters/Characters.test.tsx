@@ -1,6 +1,7 @@
 import React from 'react';
 import { MockedProvider } from '@apollo/client/testing';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { Characters, CHARACTERS_PAGES_AMOUNT_QUERY } from './Characters';
 import { CHARACTERS_QUERY } from '../../containers/Gallery/GalleryQueries';
 
@@ -78,7 +79,9 @@ describe('Given Characters component', () => {
     test('Information should be displayed and buttons found', async () => {
       render(
         <MockedProvider mocks={mocks}>
-          <Characters />
+          <MemoryRouter>
+            <Characters />
+          </MemoryRouter>
         </MockedProvider>
       );
 
@@ -90,7 +93,9 @@ describe('Given Characters component', () => {
     test('Loading should be displayed and buttons not found', () => {
       render(
         <MockedProvider mocks={mocks}>
-          <Characters />
+          <MemoryRouter>
+            <Characters />
+          </MemoryRouter>
         </MockedProvider>
       );
 
@@ -102,7 +107,9 @@ describe('Given Characters component', () => {
     test('Next page should load and then prev page', async () => {
       render(
         <MockedProvider mocks={mocks}>
-          <Characters />
+          <MemoryRouter>
+            <Characters />
+          </MemoryRouter>
         </MockedProvider>
       );
 
