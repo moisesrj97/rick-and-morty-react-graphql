@@ -16,7 +16,7 @@ export function SearchBar({
   useEffect(() => {
     setInputValue('');
     setSearchValue('');
-  }, []);
+  }, [setSearchValue]);
 
   return (
     <div className="flex justify-center mb-3">
