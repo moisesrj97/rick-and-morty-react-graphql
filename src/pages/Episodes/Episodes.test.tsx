@@ -11,6 +11,7 @@ const mocks = [
       query: EPISODES_QUERY,
       variables: {
         page: 1,
+        filter: { name: '' },
       },
     },
     result: {
@@ -37,6 +38,7 @@ const mocks = [
       query: EPISODES_QUERY,
       variables: {
         page: 2,
+        filter: { name: '' },
       },
     },
     result: {
@@ -61,6 +63,7 @@ const mocks = [
   {
     request: {
       query: EPISODES_PAGES_AMOUNT_QUERY,
+      variables: { filter: { name: '' } },
     },
     result: {
       data: {
@@ -80,7 +83,7 @@ describe('Given episodes component', () => {
       render(
         <MockedProvider mocks={mocks}>
           <MemoryRouter>
-            <Episodes />
+            <Episodes searchValue="" />
           </MemoryRouter>
         </MockedProvider>
       );
@@ -94,7 +97,7 @@ describe('Given episodes component', () => {
       render(
         <MockedProvider mocks={mocks}>
           <MemoryRouter>
-            <Episodes />
+            <Episodes searchValue="" />
           </MemoryRouter>
         </MockedProvider>
       );
@@ -108,7 +111,7 @@ describe('Given episodes component', () => {
       render(
         <MockedProvider mocks={mocks}>
           <MemoryRouter>
-            <Episodes />
+            <Episodes searchValue="" />
           </MemoryRouter>
         </MockedProvider>
       );

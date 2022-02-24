@@ -11,6 +11,7 @@ const mocks = [
       query: LOCATIONS_QUERY,
       variables: {
         page: 1,
+        filter: { name: '' },
       },
     },
     result: {
@@ -35,6 +36,7 @@ const mocks = [
       query: LOCATIONS_QUERY,
       variables: {
         page: 2,
+        filter: { name: '' },
       },
     },
     result: {
@@ -57,6 +59,7 @@ const mocks = [
   {
     request: {
       query: LOCATIONS_PAGES_AMOUNT_QUERY,
+      variables: { filter: { name: '' } },
     },
     result: {
       data: {
@@ -76,7 +79,7 @@ describe('Given locations component', () => {
       render(
         <MockedProvider mocks={mocks}>
           <MemoryRouter>
-            <Locations />
+            <Locations searchValue="" />
           </MemoryRouter>
         </MockedProvider>
       );
@@ -90,7 +93,7 @@ describe('Given locations component', () => {
       render(
         <MockedProvider mocks={mocks}>
           <MemoryRouter>
-            <Locations />
+            <Locations searchValue="" />
           </MemoryRouter>
         </MockedProvider>
       );
@@ -104,7 +107,7 @@ describe('Given locations component', () => {
       render(
         <MockedProvider mocks={mocks}>
           <MemoryRouter>
-            <Locations />
+            <Locations searchValue="" />
           </MemoryRouter>
         </MockedProvider>
       );

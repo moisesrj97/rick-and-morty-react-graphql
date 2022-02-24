@@ -11,9 +11,15 @@ interface EpisodesPagesAmountQueryI {
   };
 }
 
+interface EpisodesPageAmountQueryVariablesI {
+  filter: {
+    name: string;
+  };
+}
+
 export const EPISODES_PAGES_AMOUNT_QUERY = gql`
-  query episodesPagesAmountQuery {
-    episodes {
+  query episodesPagesAmountQuery($filter: FilterEpisode) {
+    episodes(filter: $filter) {
       info {
         pages
       }
@@ -21,12 +27,20 @@ export const EPISODES_PAGES_AMOUNT_QUERY = gql`
   }
 `;
 
-export function Episodes(): JSX.Element {
+export function Episodes({
+  searchValue,
+}: {
+  searchValue: string;
+}): JSX.Element {
   const [pageIndex, setPageIndex] = useState(1);
   const [contentLoading, setContentLoading] = useState(true);
-  const { data } = useQuery<EpisodesPagesAmountQueryI>(
-    EPISODES_PAGES_AMOUNT_QUERY
-  );
+
+  const { data } = useQuery<
+    EpisodesPagesAmountQueryI,
+    EpisodesPageAmountQueryVariablesI
+  >(EPISODES_PAGES_AMOUNT_QUERY, {
+    variables: { filter: { name: searchValue } },
+  });
 
   const nextPage = (): void => {
     setPageIndex(pageIndex + 1);
@@ -49,6 +63,7 @@ export function Episodes(): JSX.Element {
       <Gallery
         pageIndex={pageIndex}
         setContentLoading={setContentLoading}
+        searchValue={searchValue}
         type="Episodes"
       />
       {data && !contentLoading && (

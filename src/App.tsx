@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { Dashboard } from './pages/Dashboard/Dashboard';
@@ -11,6 +11,7 @@ import { EpisodeDetail } from './pages/EpisodeDetails/EpisodeDetail';
 import { About } from './pages/About/About';
 import { NavBar } from './core/NavBar/NavBar';
 import { Footer } from './core/Footer/Footer';
+import { SearchBar } from './core/SearchBar/SearchBar';
 
 export interface MenuItemI {
   tag: string;
@@ -25,17 +26,29 @@ function App(): JSX.Element {
     { tag: 'About', url: '/about/' },
   ];
 
+  const [searchValue, setSearchValue] = useState('');
+
   return (
     <div className="App min-h-screen flex flex-col">
       <NavBar navLinks={navLinks} />
+      <SearchBar setSearchValue={setSearchValue} />
       <main className="flex-1 my-4 flex flex-col justify-center">
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/characters/*" element={<Characters />} />
+          <Route
+            path="/characters/*"
+            element={<Characters searchValue={searchValue} />}
+          />
           <Route path="/characters/:id" element={<CharacterDetail />} />
-          <Route path="/locations/*" element={<Locations />} />
+          <Route
+            path="/locations/*"
+            element={<Locations searchValue={searchValue} />}
+          />
           <Route path="/locations/:id" element={<LocationDetail />} />
-          <Route path="/episodes/*" element={<Episodes />} />
+          <Route
+            path="/episodes/*"
+            element={<Episodes searchValue={searchValue} />}
+          />
           <Route path="/episodes/:id" element={<EpisodeDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<Navigate to="/" />} />

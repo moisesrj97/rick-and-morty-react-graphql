@@ -14,6 +14,7 @@ const charactersMock = {
     query: CHARACTERS_QUERY,
     variables: {
       page: 1,
+      filter: { name: '' },
     },
   },
   result: {
@@ -41,6 +42,7 @@ const locationMock = {
     query: LOCATIONS_QUERY,
     variables: {
       page: 1,
+      filter: { name: '' },
     },
   },
   result: {
@@ -66,6 +68,7 @@ const episodesMock = {
     query: EPISODES_QUERY,
     variables: {
       page: 1,
+      filter: { name: '' },
     },
   },
   result: {
@@ -93,9 +96,10 @@ const charactersMockError = {
     query: CHARACTERS_QUERY,
     variables: {
       page: 1,
+      filter: { name: '' },
     },
   },
-  error: new Error('An error occurred'),
+  error: new Error('404: Not Found'),
 };
 
 describe('Given Gallery component', () => {
@@ -108,6 +112,7 @@ describe('Given Gallery component', () => {
             pageIndex={1}
             setContentLoading={mockSetContentLoading}
             type="Characters"
+            searchValue=""
           />
         </MockedProvider>
       );
@@ -124,11 +129,13 @@ describe('Given Gallery component', () => {
             pageIndex={1}
             setContentLoading={mockSetContentLoading}
             type="Characters"
+            searchValue=""
           />
         </MockedProvider>
       );
 
       expect(await screen.findByText(/Error/i)).toBeInTheDocument();
+      expect(await screen.findByText(/Sorry/i)).toBeInTheDocument();
     });
   });
   describe('When it receives characters type', () => {
@@ -142,6 +149,7 @@ describe('Given Gallery component', () => {
               pageIndex={1}
               setContentLoading={mockSetContentLoading}
               type="Characters"
+              searchValue=""
             />
           </MemoryRouter>
         </MockedProvider>
@@ -162,6 +170,7 @@ describe('Given Gallery component', () => {
               pageIndex={1}
               setContentLoading={mockSetContentLoading}
               type="Locations"
+              searchValue=""
             />
           </MemoryRouter>
         </MockedProvider>
@@ -182,6 +191,7 @@ describe('Given Gallery component', () => {
               pageIndex={1}
               setContentLoading={mockSetContentLoading}
               type="Episodes"
+              searchValue=""
             />
           </MemoryRouter>
         </MockedProvider>
