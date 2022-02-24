@@ -108,6 +108,7 @@ describe('Given Gallery component', () => {
             pageIndex={1}
             setContentLoading={mockSetContentLoading}
             type="Characters"
+            searchValue=""
           />
         </MockedProvider>
       );
@@ -124,6 +125,7 @@ describe('Given Gallery component', () => {
             pageIndex={1}
             setContentLoading={mockSetContentLoading}
             type="Characters"
+            searchValue=""
           />
         </MockedProvider>
       );
@@ -142,6 +144,7 @@ describe('Given Gallery component', () => {
               pageIndex={1}
               setContentLoading={mockSetContentLoading}
               type="Characters"
+              searchValue=""
             />
           </MemoryRouter>
         </MockedProvider>
@@ -162,6 +165,7 @@ describe('Given Gallery component', () => {
               pageIndex={1}
               setContentLoading={mockSetContentLoading}
               type="Locations"
+              searchValue=""
             />
           </MemoryRouter>
         </MockedProvider>
@@ -182,6 +186,7 @@ describe('Given Gallery component', () => {
               pageIndex={1}
               setContentLoading={mockSetContentLoading}
               type="Episodes"
+              searchValue=""
             />
           </MemoryRouter>
         </MockedProvider>

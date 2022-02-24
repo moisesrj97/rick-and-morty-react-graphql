@@ -76,7 +76,7 @@ describe('Given locations component', () => {
       render(
         <MockedProvider mocks={mocks}>
           <MemoryRouter>
-            <Locations />
+            <Locations searchValue="" />
           </MemoryRouter>
         </MockedProvider>
       );
@@ -90,7 +90,7 @@ describe('Given locations component', () => {
       render(
         <MockedProvider mocks={mocks}>
           <MemoryRouter>
-            <Locations />
+            <Locations searchValue="" />
           </MemoryRouter>
         </MockedProvider>
       );
@@ -104,7 +104,7 @@ describe('Given locations component', () => {
       render(
         <MockedProvider mocks={mocks}>
           <MemoryRouter>
-            <Locations />
+            <Locations searchValue="" />
           </MemoryRouter>
         </MockedProvider>
       );

@@ -80,7 +80,7 @@ describe('Given episodes component', () => {
       render(
         <MockedProvider mocks={mocks}>
           <MemoryRouter>
-            <Episodes />
+            <Episodes searchValue="" />
           </MemoryRouter>
         </MockedProvider>
       );
@@ -94,7 +94,7 @@ describe('Given episodes component', () => {
       render(
         <MockedProvider mocks={mocks}>
           <MemoryRouter>
-            <Episodes />
+            <Episodes searchValue="" />
           </MemoryRouter>
         </MockedProvider>
       );
@@ -108,7 +108,7 @@ describe('Given episodes component', () => {
       render(
         <MockedProvider mocks={mocks}>
           <MemoryRouter>
-            <Episodes />
+            <Episodes searchValue="" />
           </MemoryRouter>
         </MockedProvider>
       );
