@@ -96,9 +96,10 @@ const charactersMockError = {
     query: CHARACTERS_QUERY,
     variables: {
       page: 1,
+      filter: { name: '' },
     },
   },
-  error: new Error("Can't find Rick"),
+  error: new Error('404: Not Found'),
 };
 
 describe('Given Gallery component', () => {
@@ -134,6 +135,7 @@ describe('Given Gallery component', () => {
       );
 
       expect(await screen.findByText(/Error/i)).toBeInTheDocument();
+      expect(await screen.findByText(/Sorry/i)).toBeInTheDocument();
     });
   });
   describe('When it receives characters type', () => {
