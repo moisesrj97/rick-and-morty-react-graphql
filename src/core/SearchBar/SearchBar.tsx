@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 
 export function SearchBar({
   setSearchValue,
@@ -12,6 +12,11 @@ export function SearchBar({
     setInputValue(searchValue);
     setSearchValue(searchValue);
   };
+
+  useEffect(() => {
+    setInputValue('');
+    setSearchValue('');
+  }, []);
 
   return (
     <div className="flex justify-center mb-3">
