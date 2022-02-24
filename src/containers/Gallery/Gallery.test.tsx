@@ -14,6 +14,7 @@ const charactersMock = {
     query: CHARACTERS_QUERY,
     variables: {
       page: 1,
+      filter: { name: '' },
     },
   },
   result: {
@@ -41,6 +42,7 @@ const locationMock = {
     query: LOCATIONS_QUERY,
     variables: {
       page: 1,
+      filter: { name: '' },
     },
   },
   result: {
@@ -66,6 +68,7 @@ const episodesMock = {
     query: EPISODES_QUERY,
     variables: {
       page: 1,
+      filter: { name: '' },
     },
   },
   result: {
@@ -95,7 +98,7 @@ const charactersMockError = {
       page: 1,
     },
   },
-  error: new Error('An error occurred'),
+  error: new Error("Can't find Rick"),
 };
 
 describe('Given Gallery component', () => {

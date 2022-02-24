@@ -69,7 +69,7 @@ export function Gallery({
   return (
     <div className="flex flex-wrap gap-4 justify-center my-8 mx-6">
       {error && <p className="text-4xl text-white">Error :(</p>}
-      {error?.graphQLErrors[0].message === '404: Not Found' && (
+      {error?.message === '404: Not Found' && (
         <p className="text-4xl text-white"> Sorry, nothing found</p>
       )}
       {loading && <p className="text-4xl text-white">Loading...</p>}
