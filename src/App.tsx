@@ -1,5 +1,6 @@
+/* eslint-disable object-curly-newline */
 import React, { useState } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 import { Dashboard } from './pages/Dashboard/Dashboard';
 import { Characters } from './pages/Characters/Characters';
@@ -26,12 +27,16 @@ function App(): JSX.Element {
     { tag: 'About', url: '/about/' },
   ];
 
+  const { pathname } = useLocation();
+
   const [searchValue, setSearchValue] = useState('');
 
   return (
     <div className="App min-h-screen flex flex-col">
       <NavBar navLinks={navLinks} />
-      <SearchBar setSearchValue={setSearchValue} />
+      {['/characters/', '/locations/', '/episodes/'].includes(pathname) && (
+        <SearchBar setSearchValue={setSearchValue} />
+      )}
       <main className="flex-1 my-4 flex flex-col justify-center">
         <Routes>
           <Route path="/" element={<Dashboard />} />
