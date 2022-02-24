@@ -1,13 +1,15 @@
 import React from 'react';
 import { screen, render } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 
 describe('App', () => {
   test('renders learn react link', () => {
     render(
-      <MemoryRouter>
-        <App />
+      <MemoryRouter initialEntries={['/characters/']}>
+        <Routes location="/characters/">
+          <Route path="/characters/" element={<App />} />
+        </Routes>
       </MemoryRouter>
     );
 
