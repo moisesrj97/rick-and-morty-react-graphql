@@ -11,6 +11,8 @@ A simple app that fetches data from the [Rick & Morty API](https://rickandmortya
 - Apollo Client
 - GraphQL
 - Jest && React Testing Library
+- TailwindCSS
+- FontAwesome Icons
 
 ## Usage
 
