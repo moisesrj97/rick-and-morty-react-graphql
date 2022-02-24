@@ -10,18 +10,23 @@ import {
 
 interface QueryVariableI {
   page: number;
+  filter: {
+    name: string;
+  };
 }
 
 interface GalleryPropsI {
   pageIndex: number;
   setContentLoading: (loading: boolean) => void;
   type: 'Characters' | 'Episodes' | 'Locations';
+  searchValue: string;
 }
 
 export function Gallery({
   pageIndex,
   setContentLoading,
   type,
+  searchValue,
 }: GalleryPropsI): JSX.Element {
   let QUERY: DocumentNode;
 
@@ -52,7 +57,7 @@ export function Gallery({
   const { loading, error, data } = useQuery<QueryResultI, QueryVariableI>(
     QUERY,
     {
-      variables: { page: pageIndex },
+      variables: { page: pageIndex, filter: { name: searchValue } },
     }
   );
 
@@ -64,6 +69,9 @@ export function Gallery({
   return (
     <div className="flex flex-wrap gap-4 justify-center my-8 mx-6">
       {error && <p className="text-4xl text-white">Error :(</p>}
+      {error?.graphQLErrors[0].message === '404: Not Found' && (
+        <p className="text-4xl text-white"> Sorry, nothing found</p>
+      )}
       {loading && <p className="text-4xl text-white">Loading...</p>}
       {data?.[type.toLowerCase()].results.map((item) => (
         <Link to={`/${type.toLowerCase()}/${item.id}`} key={item.id}>

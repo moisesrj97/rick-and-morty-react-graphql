@@ -3,7 +3,7 @@ import { gql, useQuery } from '@apollo/client';
 import { Gallery } from '../../containers/Gallery/Gallery';
 import { NavButtons } from '../../core/NavButtons/NavButtons';
 
-interface CharactersPagesAmountQueryI {
+interface LocationsPagesAmountQueryI {
   locations: {
     info: {
       pages: number;
@@ -11,9 +11,15 @@ interface CharactersPagesAmountQueryI {
   };
 }
 
+interface LocationsPageAmountQueryVariablesI {
+  filter: {
+    name: string;
+  };
+}
+
 export const LOCATIONS_PAGES_AMOUNT_QUERY = gql`
-  query locationsPagesAmountQuery {
-    locations {
+  query locationsPagesAmountQuery($filter: FilterLocation) {
+    locations(filter: $filter) {
       info {
         pages
       }
@@ -21,12 +27,20 @@ export const LOCATIONS_PAGES_AMOUNT_QUERY = gql`
   }
 `;
 
-export function Locations(): JSX.Element {
+export function Locations({
+  searchValue,
+}: {
+  searchValue: string;
+}): JSX.Element {
   const [pageIndex, setPageIndex] = useState(1);
   const [contentLoading, setContentLoading] = useState(true);
-  const { data } = useQuery<CharactersPagesAmountQueryI>(
-    LOCATIONS_PAGES_AMOUNT_QUERY
-  );
+
+  const { data } = useQuery<
+    LocationsPagesAmountQueryI,
+    LocationsPageAmountQueryVariablesI
+  >(LOCATIONS_PAGES_AMOUNT_QUERY, {
+    variables: { filter: { name: searchValue } },
+  });
 
   const nextPage = (): void => {
     setPageIndex(pageIndex + 1);
@@ -49,6 +63,7 @@ export function Locations(): JSX.Element {
       <Gallery
         pageIndex={pageIndex}
         setContentLoading={setContentLoading}
+        searchValue={searchValue}
         type="Locations"
       />
       {data && !contentLoading && (

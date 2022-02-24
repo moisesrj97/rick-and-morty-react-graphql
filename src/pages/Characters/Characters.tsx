@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { Gallery } from '../../containers/Gallery/Gallery';
 import { NavButtons } from '../../core/NavButtons/NavButtons';
+import { SearchBar } from '../../core/SearchBar/SearchBar';
 
 interface CharactersPagesAmountQueryI {
   characters: {
@@ -11,9 +12,15 @@ interface CharactersPagesAmountQueryI {
   };
 }
 
+interface CharactersPageAmountQueryVariablesI {
+  filter: {
+    name: string;
+  };
+}
+
 export const CHARACTERS_PAGES_AMOUNT_QUERY = gql`
-  query charactersPagesAmountQuery {
-    characters {
+  query charactersPagesAmountQuery($filter: FilterCharacter) {
+    characters(filter: $filter) {
       info {
         pages
       }
@@ -21,12 +28,19 @@ export const CHARACTERS_PAGES_AMOUNT_QUERY = gql`
   }
 `;
 
-export function Characters(): JSX.Element {
+export function Characters({
+  searchValue,
+}: {
+  searchValue: string;
+}): JSX.Element {
   const [pageIndex, setPageIndex] = useState(1);
   const [contentLoading, setContentLoading] = useState(true);
-  const { data } = useQuery<CharactersPagesAmountQueryI>(
-    CHARACTERS_PAGES_AMOUNT_QUERY
-  );
+  const { data } = useQuery<
+    CharactersPagesAmountQueryI,
+    CharactersPageAmountQueryVariablesI
+  >(CHARACTERS_PAGES_AMOUNT_QUERY, {
+    variables: { filter: { name: searchValue } },
+  });
 
   const nextPage = (): void => {
     setPageIndex(pageIndex + 1);
@@ -49,6 +63,7 @@ export function Characters(): JSX.Element {
       <Gallery
         pageIndex={pageIndex}
         setContentLoading={setContentLoading}
+        searchValue={searchValue}
         type="Characters"
       />
       {data && !contentLoading && (
