@@ -66,11 +66,7 @@ export function LocationDetail(): JSX.Element {
           </h4>
           <div className="flex flex-wrap gap-3 justify-center mt-2 ">
             {data.location.residents.map((resident) => (
-              <Link
-                to={`/characters/${resident.id}`}
-                className="border border-green-400 p-3 rounded-md hover:scale-110 hover:shadow-green-400 hover:shadow-lg transition-all"
-                key={resident.id}
-              >
+              <Link to={`/characters/${resident.id}`} key={resident.id}>
                 <Card title={resident.name} image={resident.image} />
               </Link>
             ))}
